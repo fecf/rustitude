@@ -68,7 +68,7 @@ fn main() {
         return;
     }
 
-    let window = WindowDesc::new(ui_builder)
+    let window = WindowDesc::new(ui_builder())
         .window_size((960.0, 540.0))
         .title("Rustitude");
     let launcher = AppLauncher::with_window(window);
@@ -90,7 +90,6 @@ fn main() {
 
     launcher
         .delegate(Delegate {})
-        .use_simple_logger()
         .launch(data)
         .expect("launch failed");
 }
@@ -387,7 +386,7 @@ impl Widget<AppState> for Updater {
 struct Segment {
     entry: Arc<Entry>,
     circle_segment: CircleSegment,
-    path: String,
+    // path: String,
     is_dir: bool,
 }
 struct Chart {
@@ -443,7 +442,7 @@ impl Chart {
                 CircleSegment::new(druid::Point::new(0.0, 0.0), outer, inner, pos, sweep);
             result.push(Segment {
                 entry: v.clone(),
-                path: v.path.to_str().unwrap().into(),
+                // path: v.path.to_str().unwrap().into(),
                 is_dir: v.path.is_dir(),
                 circle_segment: circle_segment,
             });
